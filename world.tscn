@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://bb2wrlvmybkcl"]
+
+[ext_resource type="PackedScene" uid="uid://cw31die5kr4j0" path="res://player.tscn" id="1_62hln"]
+[ext_resource type="Texture2D" uid="uid://lbwmm5yvui8o" path="res://mini-jam-152.png" id="1_oijvx"]
+[ext_resource type="Script" path="res://world.gd" id="1_oxroc"]
+[ext_resource type="FontFile" uid="uid://bigkhfv1scadl" path="res://SMOLBLOCKFONT_0.TTF" id="2_rbnge"]
+[ext_resource type="PackedScene" uid="uid://cphre3areulf0" path="res://ball.tscn" id="4_3crki"]
+[ext_resource type="PackedScene" uid="uid://b7swn5th27axb" path="res://enemy.tscn" id="5_kjdon"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yume"]
+texture = ExtResource("1_oijvx")
+0:3/0 = 0
+1:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_g7rht"]
+sources/0 = SubResource("TileSetAtlasSource_7yume")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_klbed"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axnt0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tiqd1"]
+normal = Vector2(-1, 0)
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_oxroc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_top = 160.0
+offset_right = 224.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 1)
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("2_rbnge")
+theme_override_font_sizes/font_size = 5
+text = "[0]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Ground" type="TileMap" parent="."]
+z_index = -1
+texture_filter = 1
+tile_set = SubResource("TileSet_g7rht")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 3, 65536, 65536, 3, 131072, 0, 3, 196608, 0, 3, 262144, 65536, 3, 327680, 65536, 3, 393216, 65536, 3, 458752, 0, 3, 524288, 0, 3, 589824, 65536, 3, 1, 65536, 3, 65537, 0, 3, 131073, 0, 3, 196609, 65536, 3, 262145, 0, 3, 327681, 65536, 3, 393217, 0, 3, 458753, 65536, 3, 524289, 0, 3, 589825, 65536, 3, 2, 0, 3, 65538, 0, 3, 131074, 0, 3, 196610, 65536, 3, 262146, 65536, 3, 327682, 0, 3, 393218, 0, 3, 458754, 0, 3, 524290, 65536, 3, 589826, 65536, 3, 3, 65536, 3, 65539, 0, 3, 131075, 65536, 3, 196611, 65536, 3, 262147, 0, 3, 327683, 65536, 3, 393219, 0, 3, 458755, 65536, 3, 524291, 65536, 3, 589827, 65536, 3, 4, 65536, 3, 65540, 65536, 3, 131076, 0, 3, 196612, 0, 3, 262148, 0, 3, 327684, 65536, 3, 393220, 0, 3, 458756, 65536, 3, 524292, 65536, 3, 589828, 0, 3, 5, 65536, 3, 65541, 0, 3, 131077, 0, 3, 196613, 65536, 3, 262149, 65536, 3, 327685, 0, 3, 393221, 0, 3, 458757, 0, 3, 524293, 65536, 3, 589829, 0, 3, 6, 0, 3, 65542, 0, 3, 131078, 65536, 3, 196614, 65536, 3, 262150, 0, 3, 327686, 0, 3, 393222, 0, 3, 458758, 65536, 3, 524294, 65536, 3, 589830, 0, 3, 7, 0, 3, 65543, 0, 3, 131079, 0, 3, 196615, 0, 3, 262151, 0, 3, 327687, 0, 3, 393223, 65536, 3, 458759, 65536, 3, 524295, 0, 3, 589831, 65536, 3, 8, 0, 3, 65544, 0, 3, 131080, 0, 3, 196616, 65536, 3, 262152, 0, 3, 327688, 0, 3, 393224, 0, 3, 458760, 0, 3, 524296, 65536, 3, 589832, 65536, 3, 9, 65536, 3, 65545, 65536, 3, 131081, 65536, 3, 196617, 65536, 3, 262153, 0, 3, 327689, 65536, 3, 393225, 0, 3, 458761, 0, 3, 524297, 65536, 3, 589833, 65536, 3, 10, 65536, 3, 65546, 65536, 3, 131082, 0, 3, 196618, 0, 3, 262154, 0, 3, 327690, 0, 3, 393226, 0, 3, 458762, 0, 3, 524298, 65536, 3, 589834, 0, 3, 11, 0, 3, 65547, 65536, 3, 131083, 65536, 3, 196619, 0, 3, 262155, 0, 3, 327691, 65536, 3, 393227, 65536, 3, 458763, 0, 3, 524299, 0, 3, 589835, 0, 3, 12, 65536, 3, 65548, 0, 3, 131084, 65536, 3, 196620, 0, 3, 262156, 65536, 3, 327692, 65536, 3, 393228, 65536, 3, 458764, 0, 3, 524300, 0, 3, 589836, 65536, 3, 655372, 65536, 3, 720908, 0, 3, 13, 65536, 3, 65549, 0, 3, 131085, 0, 3, 196621, 65536, 3, 262157, 65536, 3, 327693, 65536, 3, 393229, 65536, 3, 458765, 0, 3, 524301, 65536, 3, 589837, 0, 3, 655373, 65536, 3, 720909, 65536, 3)
+
+[node name="Player" parent="." instance=ExtResource("1_62hln")]
+unique_name_in_owner = true
+position = Vector2(16, 88)
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="WorldBorder" type="StaticBody2D" parent="Borders"]
+position = Vector2(80, 0)
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/WorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_klbed")
+
+[node name="WorldBorder2" type="StaticBody2D" parent="Borders"]
+position = Vector2(80, 160)
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/WorldBorder2"]
+shape = SubResource("WorldBoundaryShape2D_axnt0")
+
+[node name="WorldBorder4" type="StaticBody2D" parent="Borders"]
+position = Vector2(224, 80)
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/WorldBorder4"]
+shape = SubResource("WorldBoundaryShape2D_tiqd1")
+
+[node name="Ball" parent="." instance=ExtResource("4_3crki")]
+position = Vector2(32, 88)
+
+[node name="Enemy" parent="." instance=ExtResource("5_kjdon")]
+position = Vector2(160, 88)
+
+[connection signal="game_lost" from="." to="." method="_on_game_lost" flags=6]
+[connection signal="game_won" from="." to="." method="_on_game_won" flags=6]
+[connection signal="die" from="Player" to="." method="_on_player_die"]

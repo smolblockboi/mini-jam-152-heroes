@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cphre3areulf0"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_87bb4"]
+[ext_resource type="Texture2D" uid="uid://lbwmm5yvui8o" path="res://mini-jam-152.png" id="1_fi7xk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i1br0"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fykq7"]
+radius = 4.0
+
+[node name="Ball" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 16
+collision_mask = 29
+script = ExtResource("1_87bb4")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_fi7xk")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(48, 16, 32, 16)
+
+[node name="BounceArea" type="Area2D" parent="." groups=["ball"]]
+collision_layer = 8
+collision_mask = 23
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceArea"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_i1br0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fykq7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="BounceArea" to="." method="_on_bounce_area_area_entered"]
+[connection signal="body_entered" from="BounceArea" to="." method="_on_bounce_area_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
