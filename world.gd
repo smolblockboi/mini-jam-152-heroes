@@ -31,7 +31,7 @@ func _input(event):
 
 
 func _process(delta):
-	level_label.text = "[%s]" % str(GlobalData.level)
+	level_label.text = "Wave %s" % str(GlobalData.level)
 	
 	var count = 0
 	for i in get_children():
@@ -45,13 +45,19 @@ func _process(delta):
 
 func on_lost_ball():
 	lives_count -= 1
+	for i in balls_h_box.get_children():
+		i.hide()
 	for i in lives_count:
-		balls_h_box.get_child(i).hide()
+		balls_h_box.get_child(i).show()
 	if lives_count <= 0:
 		game_lost.emit()
 	else:
 		ball.global_position = ball_marker.global_position
 		ball.reset()
+
+
+func on_princess_hit():
+	game_lost.emit()
 
 
 func _on_game_won():

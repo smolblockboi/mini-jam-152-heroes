@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bb2wrlvmybkcl"]
+[gd_scene load_steps=14 format=3 uid="uid://bb2wrlvmybkcl"]
 
 [ext_resource type="PackedScene" uid="uid://cw31die5kr4j0" path="res://player.tscn" id="1_62hln"]
 [ext_resource type="Texture2D" uid="uid://lbwmm5yvui8o" path="res://mini-jam-152.png" id="1_oijvx"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bigkhfv1scadl" path="res://SMOLBLOCKFONT_0.TTF" id="2_rbnge"]
 [ext_resource type="PackedScene" uid="uid://cphre3areulf0" path="res://ball.tscn" id="4_3crki"]
 [ext_resource type="PackedScene" uid="uid://b7swn5th27axb" path="res://enemy.tscn" id="5_kjdon"]
+[ext_resource type="PackedScene" uid="uid://cp2d3uwte0doa" path="res://princess.tscn" id="7_5dod4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qbnbg"]
 atlas = ExtResource("1_oijvx")
@@ -42,34 +43,39 @@ color = Color(0, 0, 0, 1)
 [node name="LevelLabel" type="Label" parent="CanvasLayer/ColorRect"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 8.0
 offset_right = 224.0
-offset_bottom = 24.0
+offset_bottom = 16.0
 theme_override_fonts/font = ExtResource("2_rbnge")
 theme_override_font_sizes/font_size = 5
-text = "[0]"
+text = "[Wave 0]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BallsHBox" type="HBoxContainer" parent="CanvasLayer/ColorRect"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
+offset_left = 80.0
 offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_right = 144.0
+offset_bottom = 32.0
 theme_override_constants/separation = 0
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/BallsHBox"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_qbnbg")
+stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/ColorRect/BallsHBox"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_qbnbg")
+stretch_mode = 5
 
 [node name="TextureRect3" type="TextureRect" parent="CanvasLayer/ColorRect/BallsHBox"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_qbnbg")
+stretch_mode = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -83,7 +89,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 3, 65536, 65536, 3, 131072, 0, 3, 196
 
 [node name="Player" parent="." instance=ExtResource("1_62hln")]
 unique_name_in_owner = true
-position = Vector2(16, 88)
+position = Vector2(40, 88)
 
 [node name="Borders" type="Node2D" parent="."]
 
@@ -112,13 +118,16 @@ metadata/_edit_group_ = true
 shape = SubResource("WorldBoundaryShape2D_tiqd1")
 
 [node name="Ball" parent="." instance=ExtResource("4_3crki")]
-position = Vector2(32, 88)
+position = Vector2(56, 88)
 
 [node name="Enemy" parent="." instance=ExtResource("5_kjdon")]
 position = Vector2(160, 88)
 
 [node name="BallMarker" type="Marker2D" parent="."]
-position = Vector2(32, 88)
+position = Vector2(56, 88)
+
+[node name="Princess" parent="." instance=ExtResource("7_5dod4")]
+position = Vector2(16, 88)
 
 [connection signal="game_lost" from="." to="." method="_on_game_lost" flags=6]
 [connection signal="game_won" from="." to="." method="_on_game_won" flags=6]

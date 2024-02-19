@@ -100,10 +100,13 @@ func _on_bounce_area_area_entered(area):
 
 
 func _on_bounce_area_body_entered(body):
-	if body is Player and !invincible:
-		get_parent().on_lost_ball()
-	if body is Enemy:
-		body.get_hit_by_ball()
+	if get_parent().game_state == 0:
+		if body is Player and !invincible:
+			get_parent().on_lost_ball()
+		if body is Princess:
+			get_parent().on_princess_hit()
+		if body is Enemy:
+			body.get_hit_by_ball()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

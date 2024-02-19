@@ -1,3 +1,4 @@
+CharacterBody2D
 HBoxContainer
 TextureRect
 Marker2D
@@ -9,7 +10,5 @@ CollisionShape2D
 Area2D
 VisibleOnScreenNotifier2D
 Camera2D
-CharacterBody2D
 RigidBody2D
 Sprite2D
-Node2D

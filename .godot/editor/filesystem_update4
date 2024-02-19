@@ -5,4 +5,6 @@ res://ball.tscn
 res://win_screen.tscn
 res://lose_screen.tscn
 res://world.gd
+res://princess.tscn
+res://princess.gd
 res://ball.gd
