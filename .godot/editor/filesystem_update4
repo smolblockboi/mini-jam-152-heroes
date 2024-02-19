@@ -4,13 +4,5 @@ res://enemy.tscn
 res://ball.tscn
 res://win_screen.tscn
 res://lose_screen.tscn
-res://player.gd
-res://ball.gd
 res://world.gd
-res://levels/level_2.tscn
-res://levels/level_3.tscn
-res://levels/level_1.tscn
-res://levels/level_4.tscn
-res://levels/level_5.tscn
-res://global_data.gd
-res://enemy.gd
+res://ball.gd

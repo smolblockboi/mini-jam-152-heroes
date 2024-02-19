@@ -9,10 +9,15 @@ const WIN_SCREEN = preload("res://win_screen.tscn")
 @onready var player = %Player
 @onready var level_label = %LevelLabel
 
+@onready var ball = $Ball
+@onready var ball_marker = $BallMarker
+
+@onready var balls_h_box = %BallsHBox
 
 enum GAME_STATE {PLAYING, WON, LOST}
 var game_state : GAME_STATE = GAME_STATE.PLAYING
 
+var lives_count : int = 3
 var enemy_count : int = 0
 
 
@@ -38,8 +43,15 @@ func _process(delta):
 		game_won.emit()
 
 
-func _on_player_die():
-	game_lost.emit()
+func on_lost_ball():
+	lives_count -= 1
+	for i in lives_count:
+		balls_h_box.get_child(i).hide()
+	if lives_count <= 0:
+		game_lost.emit()
+	else:
+		ball.global_position = ball_marker.global_position
+		ball.reset()
 
 
 func _on_game_won():
@@ -52,6 +64,7 @@ func _on_game_won():
 
 
 func _on_game_lost():
+	player.die.emit()
 	game_state = GAME_STATE.LOST
 	var new_screen = LOSE_SCREEN.instantiate()
 	add_child(new_screen)

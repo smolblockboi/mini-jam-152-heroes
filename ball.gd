@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var body = $Body
 @onready var bounce_shape = $BounceArea/CollisionShape2D
 
+
 @onready var audio_player = $AudioStreamPlayer
 var hit_sounds = [
 	load("res://audio/blip.wav"), 
@@ -57,6 +58,10 @@ func _physics_process(delta):
 		invincible = false
 
 
+func reset():
+	_ready()
+
+
 func clamp_bounce_speed(speed):
 	return clampf(speed * bounce_power, min_speed, max_speed)
 
@@ -96,12 +101,11 @@ func _on_bounce_area_area_entered(area):
 
 func _on_bounce_area_body_entered(body):
 	if body is Player and !invincible:
-		body.die.emit()
+		get_parent().on_lost_ball()
 	if body is Enemy:
 		body.get_hit_by_ball()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	if get_parent().game_state == 0 and get_parent().player:
-		get_parent().player.die.emit()
-	queue_free()
+		get_parent().on_lost_ball()
