@@ -14,6 +14,9 @@ const WIN_SCREEN = preload("res://win_screen.tscn")
 
 @onready var balls_h_box = %BallsHBox
 
+@onready var princess = $Princess
+
+
 enum GAME_STATE {PLAYING, WON, LOST}
 var game_state : GAME_STATE = GAME_STATE.PLAYING
 
@@ -57,6 +60,7 @@ func on_lost_ball():
 
 
 func on_princess_hit():
+	princess.queue_free()
 	game_lost.emit()
 
 
@@ -75,4 +79,4 @@ func _on_game_lost():
 	var new_screen = LOSE_SCREEN.instantiate()
 	add_child(new_screen)
 	await get_tree().create_timer(2.0).timeout
-	GlobalData.go_to_level(1)
+	get_tree().change_scene_to_file("res://title_screen.tscn")

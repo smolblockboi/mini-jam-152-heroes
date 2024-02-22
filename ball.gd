@@ -87,10 +87,10 @@ func _on_bounce_area_area_entered(area):
 		
 		if area_side.y < 0:
 			if area.is_in_group("sword"):
-				velocity.y = move_speed * 1.05
+				velocity.y = move_speed * randf_range(1.05, 1.15)
 		elif area_side.y > 0:
 			if area.is_in_group("sword"):
-				velocity.y = -move_speed * 1.05
+				velocity.y = -move_speed * randf_range(1.05, 1.15)
 		
 		if area.is_in_group("shield"):
 			move_speed = max_speed
